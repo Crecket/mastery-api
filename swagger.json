@@ -1,0 +1,716 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Masterypoints API",
+        "description": "This is the documentation for the https://www.masterypoints.com API",
+        "termsOfService": "https://www.masterypoints.com/tos",
+        "contact": {
+            "email": "masterypoints@gmail.com"
+        },
+        "version": "1.1"
+    },
+    "basePath": "/api/v1.1",
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/static/servers": {
+            "get": {
+                "tags": [
+                    "static"
+                ],
+                "summary": "Server list",
+                "description": "Object with all servers currently active",
+                "operationId": "getServerList",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Server"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/static/champions": {
+            "get": {
+                "tags": [
+                    "static"
+                ],
+                "summary": "Champions list",
+                "description": "Object with all champions currently active",
+                "operationId": "getChampionList",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/Champion"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/highscores/champion/{championId}/{offset}/{limit}/{server}": {
+            "get": {
+                "tags": [
+                    "highscores"
+                ],
+                "summary": "Champion points",
+                "description": "Returns a list of the champions with the highest masterypoints",
+                "operationId": "highscoresChampion",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "championId",
+                        "in": "path",
+                        "description": "ID of champion to get highscores for",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64",
+                        "default": "0"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "path",
+                        "description": "Offset amount for the highscores",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64",
+                        "default": "0",
+                        "maximum": 250000,
+                        "minimum": 0
+                    },
+                    {
+                        "name": "limit",
+                        "in": "path",
+                        "description": "Limit amount of rows to return",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64",
+                        "default": 20,
+                        "maximum": 250,
+                        "minimum": 5
+                    },
+                    {
+                        "name": "server",
+                        "in": "path",
+                        "description": "Server to filter by",
+                        "required": false,
+                        "type": "string",
+                        "default": "any"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/ChampionHighscore"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid offset or limit"
+                    },
+                    "404": {
+                        "description": "Champion or server not found"
+                    }
+                }
+            }
+        },
+        "/highscores/total/{offset}/{limit}/{server}": {
+            "get": {
+                "tags": [
+                    "highscores"
+                ],
+                "summary": "Summoner total points",
+                "description": "Returns a list of the champions with the highest masterypoints",
+                "operationId": "highscoresTotal",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "offset",
+                        "in": "path",
+                        "description": "Offset amount for the highscores",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64",
+                        "default": "0",
+                        "maximum": 250000,
+                        "minimum": 0
+                    },
+                    {
+                        "name": "limit",
+                        "in": "path",
+                        "description": "Limit amount of rows to return",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64",
+                        "default": 20,
+                        "maximum": 250,
+                        "minimum": 5
+                    },
+                    {
+                        "name": "server",
+                        "in": "path",
+                        "description": "Server to filter by",
+                        "required": false,
+                        "type": "string",
+                        "default": "any"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/TotalHighscore"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid offset or limit"
+                    },
+                    "404": {
+                        "description": "Champion or server not found"
+                    }
+                }
+            }
+        },
+        "/summoner/{summoner}/{server}": {
+            "get": {
+                "tags": [
+                    "summoner"
+                ],
+                "summary": "Profile by summoner Name",
+                "description": "A single summoner profile with summoner info, mastery info and ingame data",
+                "operationId": "summonerProfile",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "summoner",
+                        "in": "path",
+                        "description": "Summoner name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "server",
+                        "in": "path",
+                        "description": "Server to filter by",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid server"
+                    }
+                }
+            }
+        },
+        "/summoner/{summoner_id}/{server}": {
+            "get": {
+                "tags": [
+                    "summoner"
+                ],
+                "summary": "Profile by summoner ID",
+                "description": "A single summoner profile with summoner info, mastery info and ingame data using the summoner ID",
+                "operationId": "summonerProfileId",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "summoner_id",
+                        "in": "path",
+                        "description": "Summoner ID",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "server",
+                        "in": "path",
+                        "description": "Server to filter by",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid server"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Champion": {
+            "properties": {
+                "id": {
+                    "description": "",
+                    "type": "integer",
+                    "format": "int64",
+                    "example": "1"
+                },
+                "name": {
+                    "description": "",
+                    "type": "string",
+                    "example": "Annie"
+                },
+                "pretty_name": {
+                    "description": "",
+                    "type": "string",
+                    "example": "annie"
+                },
+                "title": {
+                    "description": "",
+                    "type": "string",
+                    "example": "the Dark Child"
+                },
+                "champkey": {
+                    "description": "",
+                    "type": "string",
+                    "example": "Annie"
+                },
+                "img": {
+                    "description": "",
+                    "type": "string",
+                    "example": "/assets/img/lol/champion_icons/Annie.png"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "Champion"
+            }
+        },
+        "ChampionHighscore": {
+            "properties": {
+                "summoner": {
+                    "description": "",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "mastery_level": {
+                    "description": "",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "mastery_level_estimate": {
+                    "description": "",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "tokens": {
+                    "description": "",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "champion": {
+                    "description": "",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "points": {
+                    "description": "",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "id": {
+                    "description": "",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "added": {
+                    "description": "",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "last_summoner_update": {
+                    "description": "",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "last_summoner_mastery_update": {
+                    "description": "",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "name": {
+                    "description": "",
+                    "type": "string"
+                },
+                "server": {
+                    "description": "",
+                    "type": "string"
+                },
+                "icon": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "ranked_division": {
+                    "description": "",
+                    "type": "string",
+                    "default": ""
+                },
+                "ranked_tier": {
+                    "description": "",
+                    "type": "string",
+                    "default": "Unranked"
+                },
+                "total_champions": {
+                    "description": "",
+                    "type": "integer",
+                    "default": 0
+                },
+                "total_mastered": {
+                    "description": "",
+                    "type": "integer",
+                    "default": 0
+                },
+                "total_mastery_level": {
+                    "description": "",
+                    "type": "integer",
+                    "default": 0
+                },
+                "total_points": {
+                    "description": "",
+                    "type": "integer",
+                    "default": 0
+                },
+                "total_achievement_points": {
+                    "description": "",
+                    "type": "integer",
+                    "default": 0
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "ChampionHighscore"
+            }
+        },
+        "Server": {
+            "properties": {
+                "slug": {
+                    "description": "",
+                    "type": "string",
+                    "example": "euw"
+                },
+                "key": {
+                    "description": "",
+                    "type": "string",
+                    "example": "EUW1"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "Server"
+            }
+        },
+        "SummonerInfo": {
+            "properties": {
+                "last_info_update": {
+                    "description": "",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "id": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "",
+                    "type": "string"
+                },
+                "shortName": {
+                    "description": "",
+                    "type": "string"
+                },
+                "server": {
+                    "description": "",
+                    "type": "string"
+                },
+                "icon": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "tier": {
+                    "description": "",
+                    "type": "string",
+                    "default": "Unranked"
+                },
+                "division": {
+                    "description": "",
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "SummonerInfo"
+            }
+        },
+        "SummonerIngame": {
+            "properties": {
+                "last_info_update": {
+                    "description": "",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "id": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "",
+                    "type": "string"
+                },
+                "shortName": {
+                    "description": "",
+                    "type": "string"
+                },
+                "server": {
+                    "description": "",
+                    "type": "string"
+                },
+                "icon": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "tier": {
+                    "description": "",
+                    "type": "string",
+                    "default": "Unranked"
+                },
+                "division": {
+                    "description": "",
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "SummonerInfo"
+            }
+        },
+        "SummonerMastery": {
+            "properties": {
+                "last_mastery_update": {
+                    "description": "",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "total_champions": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "total_mastered": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "total_mastery_level": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "total_points": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "total_points_rank": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "mastery_data": {
+                    "description": "",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/SummonerMasteryItem"
+                    }
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "SummonerMasteryData"
+            }
+        },
+        "SummonerMasteryItem": {
+            "properties": {
+                "slug": {
+                    "description": "",
+                    "type": "string",
+                    "example": "slug"
+                },
+                "key": {
+                    "description": "",
+                    "type": "string",
+                    "example": "key"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "SummonerMasteryItem"
+            }
+        },
+        "SummonerProfile": {
+            "properties": {
+                "summoner_info": {
+                    "description": "",
+                    "$ref": "#/definitions/SummonerInfo"
+                },
+                "summoner_mastery": {
+                    "description": "",
+                    "$ref": "#/definitions/SummonerMastery"
+                },
+                "summoner_ingame": {
+                    "description": "",
+                    "$ref": "#/definitions/SummonerIngame"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "SummonerProfile"
+            }
+        },
+        "TotalHighscore": {
+            "properties": {
+                "summoner": {
+                    "description": "",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "mastery_level": {
+                    "description": "",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "mastery_level_estimate": {
+                    "description": "",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "tokens": {
+                    "description": "",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "champion": {
+                    "description": "",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "points": {
+                    "description": "",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "id": {
+                    "description": "",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "added": {
+                    "description": "",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "last_summoner_update": {
+                    "description": "",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "last_summoner_mastery_update": {
+                    "description": "",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "name": {
+                    "description": "",
+                    "type": "string"
+                },
+                "server": {
+                    "description": "",
+                    "type": "string"
+                },
+                "icon": {
+                    "description": "",
+                    "type": "integer"
+                },
+                "ranked_division": {
+                    "description": "",
+                    "type": "string",
+                    "default": ""
+                },
+                "ranked_tier": {
+                    "description": "",
+                    "type": "string",
+                    "default": "Unranked"
+                },
+                "total_champions": {
+                    "description": "",
+                    "type": "integer",
+                    "default": 0
+                },
+                "total_mastered": {
+                    "description": "",
+                    "type": "integer",
+                    "default": 0
+                },
+                "total_mastery_level": {
+                    "description": "",
+                    "type": "integer",
+                    "default": 0
+                },
+                "total_points": {
+                    "description": "",
+                    "type": "integer",
+                    "default": 0
+                },
+                "total_achievement_points": {
+                    "description": "",
+                    "type": "integer",
+                    "default": 0
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "TotalHighscore"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "static",
+            "description": "Static data that doesn't change much"
+        },
+        {
+            "name": "summoner",
+            "description": "Summoner information for a single player"
+        },
+        {
+            "name": "highscores",
+            "description": "Highscore lists for multiple people"
+        }
+    ],
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    }
+}
