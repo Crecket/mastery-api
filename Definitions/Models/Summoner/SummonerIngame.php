@@ -11,43 +11,39 @@ namespace MP\API;
 class SummonerIngame
 {
     /**
-     * @SWG\Property()
-     * @var \DateTime
+     * @SWG\Property(example="Normal 5v5 Blind Pick")
+     * @var string
      */
-    public $last_info_update;
+    public $gameTitle;
+    /**
+     * @SWG\Property(example=3044677952)
+     * @var integer
+     */
+    public $gameId;
+    /**
+     * @SWG\Property(example=11)
+     * @var integer
+     */
+    public $mapId;
     /**
      * @SWG\Property()
      * @var integer
      */
-    public $id;
-    /**
-     * @SWG\Property()
-     * @var string
-     */
-    public $name;
-    /**
-     * @SWG\Property()
-     * @var string
-     */
-    public $shortName;
-    /**
-     * @SWG\Property()
-     * @var string
-     */
-    public $server;
+    public $gameStartTime;
     /**
      * @SWG\Property()
      * @var integer
      */
-    public $icon;
-    /**
-     * @SWG\Property(default="Unranked")
-     * @var string
-     */
-    public $tier;
+    public $gameLength;
+    // TODO array of banned champions
     /**
      * @SWG\Property()
-     * @var string
+     * @var integer
      */
-    public $division;
+    public $bannedChampions;
+    /**
+     * @SWG\Property()
+     * @var SummonerIngameParticipant[]
+     */
+    public $participants;
 }
