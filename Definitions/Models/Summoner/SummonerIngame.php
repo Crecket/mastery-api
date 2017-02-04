@@ -35,10 +35,9 @@ class SummonerIngame
      * @var integer
      */
     public $gameLength;
-    // TODO array of banned champions
     /**
      * @SWG\Property()
-     * @var integer
+     * @var SummonerIngameBannedChampion[]
      */
     public $bannedChampions;
     /**
