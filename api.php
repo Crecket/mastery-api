@@ -8,34 +8,44 @@ $match = function () {
 
 /**
  * @SWG\Get(
- *     path="/static/servers",
- *     tags={"static"},
- *     summary="Server list",
- *     description="Object with all servers currently active",
- *     operationId="getServerList",
- *     produces={"application/json"},
- *     @SWG\Response(
- *         response=200,
- *         description="successful operation",
- *         @SWG\Schema(@SWG\Items(ref="#/definitions/Server"))
+ *   path="/static/servers",
+ *   tags={"static"},
+ *   summary="Server list",
+ *   description="Object with all servers currently active",
+ *   operationId="getServerList",
+ *   produces={"application/json"},
+ *   @SWG\Response(
+ *     response=200,
+ *     description="successful operation",
+ *     @SWG\Schema(
+ *       type="array",
+ *       @SWG\Items(ref="#/definitions/Server")
  *     ),
+ *   ),
  * )
  */
 $match('/static/servers');
 
 /**
  * @SWG\Get(
- *     path="/static/champions",
- *     tags={"static"},
- *     summary="Champions list",
- *     description="Object with all champions currently active",
- *     operationId="getChampionList",
- *     produces={"application/json"},
- *     @SWG\Response(
- *         response=200,
- *         description="successful operation",
- *         @SWG\Schema(@SWG\Items(ref="#/definitions/Champion"))
+ *   path="/static/champions",
+ *   tags={"static"},
+ *   summary="Champions list",
+ *   description="Object with all champions currently active",
+ *   operationId="getChampionList",
+ *   produces={"application/json"},
+ *   @SWG\Response(
+ *     response=200,
+ *     description="successful operation",
+ *     @SWG\Schema(
+ *       type="array",
+ *       @SWG\Items(ref="#/definitions/Champion")
  *     ),
+ *   ),
+ *   @SWG\Response(
+ *     response=400,
+ *     description="Invalid server"
+ *   )
  * )
  */
 $match('/static/champions');
@@ -89,7 +99,10 @@ $match('/static/champions');
  *   @SWG\Response(
  *     response=200,
  *     description="successful operation",
- *     @SWG\Schema(ref="#/definitions/ChampionHighscore")
+ *     @SWG\Schema(
+ *       type="array",
+ *       @SWG\Items(ref="#/definitions/ChampionHighscore")
+ *     ),
  *   ),
  *   @SWG\Response(response=400,  description="Invalid offset or limit"),
  *   @SWG\Response(response=404,  description="Champion or server not found")
@@ -137,7 +150,10 @@ $match('/highscores/champion/{champion}/{offset}/{limit}/{server}');
  *   @SWG\Response(
  *     response=200,
  *     description="successful operation",
- *     @SWG\Schema(ref="#/definitions/TotalHighscore")
+ *     @SWG\Schema(
+ *       type="array",
+ *       @SWG\Items(ref="#/definitions/TotalHighscore")
+ *     ),
  *   ),
  *   @SWG\Response(response=400,  description="Invalid offset or limit"),
  *   @SWG\Response(response=404,  description="Champion or server not found")

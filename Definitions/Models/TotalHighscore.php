@@ -66,13 +66,8 @@ class TotalHighscore
      */
     public $total_mastery_level;
     /**
-     * @SWG\Property(format="int32")
+     * @SWG\Property(format="int32", example=1266677)
      * @var integer
      */
     public $total_points;
-    /**
-     * @SWG\Property(format="int32")
-     * @var integer
-     */
-    public $total_achievement_points;
 }
