@@ -29,6 +29,7 @@
                     "200": {
                         "description": "successful operation",
                         "schema": {
+                            "type": "array",
                             "items": {
                                 "$ref": "#/definitions/Server"
                             }
@@ -52,11 +53,14 @@
                     "200": {
                         "description": "successful operation",
                         "schema": {
-                            "type": "object",
+                            "type": "array",
                             "items": {
                                 "$ref": "#/definitions/Champion"
                             }
                         }
+                    },
+                    "400": {
+                        "description": "Invalid server"
                     }
                 }
             }
@@ -117,7 +121,10 @@
                     "200": {
                         "description": "successful operation",
                         "schema": {
-                            "$ref": "#/definitions/ChampionHighscore"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ChampionHighscore"
+                            }
                         }
                     },
                     "400": {
@@ -176,7 +183,10 @@
                     "200": {
                         "description": "successful operation",
                         "schema": {
-                            "$ref": "#/definitions/TotalHighscore"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/TotalHighscore"
+                            }
                         }
                     },
                     "400": {
@@ -217,7 +227,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation"
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/SummonerProfile"
+                        }
                     },
                     "400": {
                         "description": "Invalid server"
@@ -255,7 +268,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation"
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/SummonerProfile"
+                        }
                     },
                     "400": {
                         "description": "Invalid server"
@@ -427,6 +443,127 @@
                 "name": "Server"
             }
         },
+        "SummonerIngameBannedChampion": {
+            "properties": {
+                "championId": {
+                    "description": "",
+                    "type": "integer",
+                    "example": 7
+                },
+                "teamId": {
+                    "description": "",
+                    "type": "integer",
+                    "example": 100
+                },
+                "pickTurn": {
+                    "description": "",
+                    "type": "integer",
+                    "example": 1
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "SummonerIngameBannedChampion"
+            }
+        },
+        "SummonerIngameParticipant": {
+            "properties": {
+                "teamId": {
+                    "description": "",
+                    "type": "integer",
+                    "example": 100
+                },
+                "spell1Id": {
+                    "description": "",
+                    "type": "integer",
+                    "example": 14
+                },
+                "spell2Id": {
+                    "description": "",
+                    "type": "integer",
+                    "example": 4
+                },
+                "championId": {
+                    "description": "",
+                    "type": "integer",
+                    "example": 133
+                },
+                "profileIconId": {
+                    "description": "",
+                    "type": "integer",
+                    "example": 682
+                },
+                "summonerName": {
+                    "description": "",
+                    "type": "string",
+                    "example": "Crecket"
+                },
+                "bot": {
+                    "description": "",
+                    "type": "boolean",
+                    "example": false
+                },
+                "summonerId": {
+                    "description": "",
+                    "type": "integer",
+                    "example": 1234423
+                },
+                "runes": {
+                    "description": "",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/SummonerIngameParticipantRune"
+                    }
+                },
+                "masteries": {
+                    "description": "",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/SummonerIngameParticipantMastery"
+                    }
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "SummonerIngameParticipant"
+            }
+        },
+        "SummonerIngameParticipantMastery": {
+            "properties": {
+                "rank": {
+                    "description": "",
+                    "type": "integer",
+                    "example": 5
+                },
+                "masteryId": {
+                    "description": "",
+                    "type": "integer",
+                    "example": 6111
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "SummonerIngameParticipantMastery"
+            }
+        },
+        "SummonerIngameParticipantRune": {
+            "properties": {
+                "count": {
+                    "description": "",
+                    "type": "integer",
+                    "example": 9
+                },
+                "runeId": {
+                    "description": "",
+                    "type": "integer",
+                    "example": 5245
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "SummonerIngameParticipantRune"
+            }
+        },
         "SummonerInfo": {
             "properties": {
                 "last_info_update": {
@@ -471,39 +608,42 @@
         },
         "SummonerIngame": {
             "properties": {
-                "last_info_update": {
+                "gameTitle": {
                     "description": "",
                     "type": "string",
-                    "format": "date-time"
+                    "example": "Normal 5v5 Blind Pick"
                 },
-                "id": {
+                "gameId": {
+                    "description": "",
+                    "type": "integer",
+                    "example": 2147483647
+                },
+                "mapId": {
+                    "description": "",
+                    "type": "integer",
+                    "example": 11
+                },
+                "gameStartTime": {
                     "description": "",
                     "type": "integer"
                 },
-                "name": {
-                    "description": "",
-                    "type": "string"
-                },
-                "shortName": {
-                    "description": "",
-                    "type": "string"
-                },
-                "server": {
-                    "description": "",
-                    "type": "string"
-                },
-                "icon": {
+                "gameLength": {
                     "description": "",
                     "type": "integer"
                 },
-                "tier": {
+                "bannedChampions": {
                     "description": "",
-                    "type": "string",
-                    "default": "Unranked"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/SummonerIngameBannedChampion"
+                    }
                 },
-                "division": {
+                "participants": {
                     "description": "",
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/SummonerIngameParticipant"
+                    }
                 }
             },
             "type": "object",
@@ -553,15 +693,29 @@
         },
         "SummonerMasteryItem": {
             "properties": {
-                "slug": {
+                "mastery_level": {
                     "description": "",
-                    "type": "string",
-                    "example": "slug"
+                    "type": "integer",
+                    "example": 7
                 },
-                "key": {
+                "champion": {
                     "description": "",
-                    "type": "string",
-                    "example": "key"
+                    "type": "integer",
+                    "example": 1
+                },
+                "points": {
+                    "description": "",
+                    "type": "integer",
+                    "example": 50000
+                },
+                "mastery_level_estimate": {
+                    "description": "",
+                    "type": "integer",
+                    "example": 11
+                },
+                "tokens": {
+                    "description": "",
+                    "type": "integer"
                 }
             },
             "type": "object",
@@ -591,40 +745,10 @@
         },
         "TotalHighscore": {
             "properties": {
-                "summoner": {
-                    "description": "",
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "mastery_level": {
-                    "description": "",
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "mastery_level_estimate": {
-                    "description": "",
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "tokens": {
-                    "description": "",
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "champion": {
-                    "description": "",
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "points": {
-                    "description": "",
-                    "type": "integer",
-                    "format": "int32"
-                },
                 "id": {
                     "description": "",
                     "type": "integer",
-                    "format": "int32"
+                    "format": "int64"
                 },
                 "added": {
                     "description": "",
@@ -643,50 +767,49 @@
                 },
                 "name": {
                     "description": "",
-                    "type": "string"
-                },
-                "server": {
-                    "description": "",
-                    "type": "string"
+                    "type": "string",
+                    "example": "Crecket"
                 },
                 "icon": {
                     "description": "",
-                    "type": "integer"
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1439
                 },
                 "ranked_division": {
                     "description": "",
                     "type": "string",
-                    "default": ""
+                    "example": "V"
                 },
                 "ranked_tier": {
                     "description": "",
                     "type": "string",
-                    "default": "Unranked"
+                    "default": "Unranked",
+                    "example": "BRONZE"
                 },
                 "total_champions": {
                     "description": "",
                     "type": "integer",
-                    "default": 0
+                    "format": "int32",
+                    "example": 119
                 },
                 "total_mastered": {
                     "description": "",
                     "type": "integer",
-                    "default": 0
+                    "format": "int32",
+                    "example": 16
                 },
                 "total_mastery_level": {
                     "description": "",
                     "type": "integer",
-                    "default": 0
+                    "format": "int32",
+                    "example": 321
                 },
                 "total_points": {
                     "description": "",
                     "type": "integer",
-                    "default": 0
-                },
-                "total_achievement_points": {
-                    "description": "",
-                    "type": "integer",
-                    "default": 0
+                    "format": "int32",
+                    "example": 1266677
                 }
             },
             "type": "object",

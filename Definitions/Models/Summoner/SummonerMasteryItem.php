@@ -35,24 +35,4 @@ class SummonerMasteryItem
      * @var integer
      */
     public $tokens;
-    /**
-     * @SWG\Property()
-     * @var string
-     */
-    public $name;
-    /**
-     * @SWG\Property()
-     * @var string
-     */
-    public $server;
-    /**
-     * @SWG\Property()
-     * @var \Datetime
-     */
-    public $last_summoner_update;
-    /**
-     * @SWG\Property()
-     * @var \Datetime
-     */
-    public $added;
 }
