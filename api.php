@@ -1,5 +1,11 @@
 <?php
 
+namespace MP\Api;
+
+// polyfill
+$match = function () {
+};
+
 /**
  * @SWG\Get(
  *     path="/static/servers",
@@ -15,7 +21,7 @@
  *     ),
  * )
  */
-$app->match('/static/servers');
+$match('/static/servers');
 
 /**
  * @SWG\Get(
@@ -28,14 +34,11 @@ $app->match('/static/servers');
  *     @SWG\Response(
  *         response=200,
  *         description="successful operation",
- *         @SWG\Schema(
- *             type="object",
- *             @SWG\Items(ref="#/definitions/Champion")
- *         ),
+ *         @SWG\Schema(@SWG\Items(ref="#/definitions/Champion"))
  *     ),
  * )
  */
-$app->match('/static/champions');
+$match('/static/champions');
 
 /**
  * @SWG\Get(path="/highscores/champion/{championId}/{offset}/{limit}/{server}",
@@ -92,7 +95,7 @@ $app->match('/static/champions');
  *   @SWG\Response(response=404,  description="Champion or server not found")
  * )
  */
-$app->match('/highscores/champion/{champion}/{offset}/{limit}/{server}');
+$match('/highscores/champion/{champion}/{offset}/{limit}/{server}');
 
 /**
  * @SWG\Get(path="/highscores/total/{offset}/{limit}/{server}",
@@ -140,7 +143,7 @@ $app->match('/highscores/champion/{champion}/{offset}/{limit}/{server}');
  *   @SWG\Response(response=404,  description="Champion or server not found")
  * )
  */
-$app->match('/highscores/total/{offset}/{limit}/{server}');
+$match('/highscores/total/{offset}/{limit}/{server}');
 
 /**
  * @SWG\Get(path="/summoner/{summoner}/{server}",
@@ -165,7 +168,8 @@ $app->match('/highscores/total/{offset}/{limit}/{server}');
  *   ),
  *   @SWG\Response(
  *     response=200,
- *     description="successful operation"
+ *     description="successful operation",
+ *     @SWG\Schema(ref="#/definitions/SummonerProfile")
  *   ),
  *   @SWG\Response(
  *     response=400,
@@ -173,7 +177,7 @@ $app->match('/highscores/total/{offset}/{limit}/{server}');
  *   )
  * )
  */
-$app->match('/summoner/{summoner}/{server}');
+$match('/summoner/{summoner}/{server}');
 
 /**
  * @SWG\Get(path="/summoner/{summoner_id}/{server}",
@@ -199,7 +203,8 @@ $app->match('/summoner/{summoner}/{server}');
  *   ),
  *   @SWG\Response(
  *     response=200,
- *     description="successful operation"
+ *     description="successful operation",
+ *     @SWG\Schema(ref="#/definitions/SummonerProfile")
  *   ),
  *   @SWG\Response(
  *     response=400,
@@ -207,9 +212,9 @@ $app->match('/summoner/{summoner}/{server}');
  *   )
  * )
  */
-$app->match('/summoner_id/{summoner_id}/{server}');
+$match('/summoner_id/{summoner_id}/{server}');
 
 // undocumented intentionally - unreliable and shouldn't be used
-$app->match('/static/images/summoner/{id}');
+$match('/static/images/summoner/{id}');
 
-$app->match('/static/images/ranked/{tier}/{division}');
+$match('/static/images/ranked/{tier}/{division}');

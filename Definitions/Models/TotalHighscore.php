@@ -12,102 +12,67 @@ class TotalHighscore
 {
     /**
      * @SWG\Property(format="int64")
-     * @var int
-     */
-    public $summoner;
-    /**
-     * @SWG\Property(format="int64")
-     * @var int
-     */
-    public $mastery_level;
-    /**
-     * @SWG\Property(format="int64")
-     * @var int
-     */
-    public $mastery_level_estimate;
-    /**
-     * @SWG\Property(format="int64")
-     * @var int
-     */
-    public $tokens;
-    /**
-     * @SWG\Property(format="int64")
-     * @var int
-     */
-    public $champion;
-    /**
-     * @SWG\Property(format="int32")
-     * @var int
-     */
-    public $points;
-    /**
-     * @SWG\Property(format="int32")
-     * @var int
+     * @var integer
      */
     public $id;
     /**
      * @SWG\Property()
-     * @var \DateTime
+     * @var \Datetime
      */
     public $added;
     /**
      * @SWG\Property()
-     * @var \DateTime
+     * @var \Datetime
      */
     public $last_summoner_update;
     /**
      * @SWG\Property()
-     * @var \DateTime
+     * @var \Datetime
      */
     public $last_summoner_mastery_update;
     /**
-     * @SWG\Property()
+     * @SWG\Property(example="Crecket")
      * @var string
      */
     public $name;
     /**
-     * @SWG\Property()
-     * @var string
-     */
-    public $server;
-    /**
-     * @SWG\Property()
-     * @var int
+     * @SWG\Property(format="int32", example=1439)
+     * @var integer
      */
     public $icon;
     /**
-     * @SWG\Property(default="")
+     * @SWG\Property(example="V")
      * @var string
      */
     public $ranked_division;
     /**
-     * @SWG\Property(default="Unranked")
+     * @SWG\Property(default="Unranked", example="BRONZE")
      * @var string
      */
     public $ranked_tier;
     /**
-     * @SWG\Property(default=0)
-     * @var int
+     * @SWG\Property(format="int32", example=119)
+     * @var integer
      */
     public $total_champions;
     /**
-     * @SWG\Property(default=0)
-     * @var int
+     * @SWG\Property(format="int32", example=16)
+     * @var integer
      */
     public $total_mastered;
     /**
-     * @SWG\Property(default=0)
-     * @var int
+     * @SWG\Property(format="int32", example=321)
+     * @var integer
      */
     public $total_mastery_level;
     /**
-     * @SWG\Property(default=0)
-     * @var int
+     * @SWG\Property(format="int32")
+     * @var integer
      */
     public $total_points;
     /**
-     * @SWG\Property(default=0)
-     * @var int
+     * @SWG\Property(format="int32")
+     * @var integer
      */
     public $total_achievement_points;
 }

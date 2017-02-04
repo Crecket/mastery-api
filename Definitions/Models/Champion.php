@@ -12,7 +12,7 @@ class Champion
 {
     /**
      * @SWG\Property(example="1", format="int64")
-     * @var int
+     * @var integer
      */
     public $id;
     /**
