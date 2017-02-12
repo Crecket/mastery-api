@@ -221,14 +221,86 @@ $match('/summoner/{summoner}/{server}');
  *     response=200,
  *     description="successful operation",
  *     @SWG\Schema(ref="#/definitions/SummonerProfile")
- *   ),
- *   @SWG\Response(
- *     response=400,
- *     description="Invalid server"
  *   )
  * )
  */
 $match('/summoner_id/{summoner_id}/{server}');
+
+/**
+ * @SWG\Get(path="/stats/champion_totals",
+ *   tags={"Stats"},
+ *   summary="Champions",
+ *   description="Returns the total statistics for all champions",
+ *   operationId="statsChampionTotals",
+ *   produces={"application/json"},
+ *   @SWG\Response(
+ *     response=200,
+ *     description="successful operation",
+ *     @SWG\Schema(
+ *       type="array",
+ *       @SWG\Items(ref="#/definitions/StatsChampionTotalItem")
+ *     )
+ *   )
+ * )
+ */
+$match('/stats/champion_totals');
+
+/**
+ * @SWG\Get(path="/stats/mastery_level_amounts",
+ *   tags={"Stats"},
+ *   summary="Mastery levels",
+ *   description="Returns the total statistics for levels 1 t/m 7",
+ *   operationId="statsLevelAmounts",
+ *   produces={"application/json"},
+ *   @SWG\Response(
+ *     response=200,
+ *     description="successful operation",
+ *     @SWG\Schema(
+ *       type="array",
+ *       @SWG\Items(ref="#/definitions/StatsMasteryLevelItem")
+ *     )
+ *   )
+ * )
+ */
+$match('/stats/mastery_level_amounts');
+
+/**
+ * @SWG\Get(path="/stats/ranked_tiers",
+ *   tags={"Stats"},
+ *   summary="Ranked tiers",
+ *   description="Returns the total statistics for all champions",
+ *   operationId="statsRankedTiers",
+ *   produces={"application/json"},
+ *   @SWG\Response(
+ *     response=200,
+ *     description="successful operation",
+ *     @SWG\Schema(
+ *       type="array",
+ *       @SWG\Items(ref="#/definitions/StatsRankedTiers")
+ *     )
+ *   )
+ * )
+ */
+$match('/stats/ranked_tiers');
+
+/**
+ * @SWG\Get(path="/stats/server_comparison",
+ *   tags={"Stats"},
+ *   summary="Server statistics",
+ *   description="A list with statistics for each server",
+ *   operationId="statsServerComparison",
+ *   produces={"application/json"},
+ *   @SWG\Response(
+ *     response=200,
+ *     description="successful operation",
+ *     @SWG\Schema(
+ *       type="array",
+ *       @SWG\Items(ref="#/definitions/StatsServerComparison")
+ *     )
+ *   )
+ * )
+ */
+$match('/stats/server_comparison');
 
 // undocumented intentionally - unreliable and shouldn't be used
 $match('/static/images/summoner/{id}');
