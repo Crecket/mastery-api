@@ -9,7 +9,7 @@ $match = function () {
 /**
  * @SWG\Get(
  *   path="/static/servers",
- *   tags={"static"},
+ *   tags={"Static"},
  *   summary="Server list",
  *   description="Object with all servers currently active",
  *   operationId="getServerList",
@@ -29,7 +29,7 @@ $match('/static/servers');
 /**
  * @SWG\Get(
  *   path="/static/champions",
- *   tags={"static"},
+ *   tags={"Static"},
  *   summary="Champions list",
  *   description="Object with all champions currently active",
  *   operationId="getChampionList",
@@ -52,7 +52,7 @@ $match('/static/champions');
 
 /**
  * @SWG\Get(path="/highscores/champion/{championId}/{offset}/{limit}/{server}",
- *   tags={"highscores"},
+ *   tags={"Highscores"},
  *   summary="Champion points",
  *   description="Returns a list of the champions with the highest masterypoints",
  *   operationId="highscoresChampion",
@@ -112,7 +112,7 @@ $match('/highscores/champion/{champion}/{offset}/{limit}/{server}');
 
 /**
  * @SWG\Get(path="/highscores/total/{offset}/{limit}/{server}",
- *   tags={"highscores"},
+ *   tags={"Highscores"},
  *   summary="Summoner total points",
  *   description="Returns a list of the champions with the highest masterypoints",
  *   operationId="highscoresTotal",
@@ -163,7 +163,7 @@ $match('/highscores/total/{offset}/{limit}/{server}');
 
 /**
  * @SWG\Get(path="/summoner/{summoner}/{server}",
- *   tags={"summoner"},
+ *   tags={"Summoner"},
  *   summary="Profile by summoner Name",
  *   description="A single summoner profile with summoner info, mastery info and ingame data",
  *   operationId="summonerProfile",
@@ -197,7 +197,7 @@ $match('/summoner/{summoner}/{server}');
 
 /**
  * @SWG\Get(path="/summoner/{summoner_id}/{server}",
- *   tags={"summoner"},
+ *   tags={"Summoner"},
  *   summary="Profile by summoner ID",
  *   description="A single summoner profile with summoner info, mastery info and ingame data using the summoner ID",
  *   operationId="summonerProfileId",
